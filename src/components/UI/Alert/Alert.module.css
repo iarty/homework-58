@@ -3,6 +3,8 @@
   margin-bottom: 15px;
   position: relative;
   z-index: 200;
+  transform: translateX(0px);
+  transition: transform .3s ease-out;
 }
 
 .Closebtn {
@@ -13,7 +15,6 @@
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .Closebtn:hover {
