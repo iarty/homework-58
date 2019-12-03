@@ -7,7 +7,7 @@ import Button from './components/UI/Button/Button';
 export default class App extends Component {
   state = {
     showModal: false,
-    showAlert: true
+    showAlert: false
   };
 
   ModalHandler = () => {
@@ -15,11 +15,13 @@ export default class App extends Component {
   }
 
   Continued = () => {
-    alert('Continued')
+    if (!this.state.showAlert) {
+      this.AlertHandler()
+    }
   }
 
   AlertHandler = () => {
-    this.setState({ showAlert: false })
+    this.setState({ showAlert: !this.state.showAlert })
   }
 
   render() {
@@ -29,6 +31,14 @@ export default class App extends Component {
     ]
     return (
       <Fragment>
+        <Alert
+          // clickDismissable
+          type='Primary'
+          show={this.state.showAlert}
+          dismiss={this.AlertHandler}
+        >
+          This is alert
+          </Alert>
         <Modal
           show={this.state.showModal}
           close={this.ModalHandler}
@@ -42,15 +52,6 @@ export default class App extends Component {
           </div>
         </Modal>
         <div className={classes.Container}>
-          <Alert
-            // clickDismissable
-            type='Warning'
-            show={this.state.showAlert}
-            dismiss={this.AlertHandler}
-          >
-            This is a warning type alert
-          </Alert>
-
           <div className={classes.ButtonInner}>
             <Button type='Modal' clicked={this.ModalHandler}>Show Modal</Button>
           </div>
